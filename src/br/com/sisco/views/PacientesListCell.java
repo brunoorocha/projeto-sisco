@@ -49,7 +49,7 @@ public class PacientesListCell extends ListCell<Paciente> {
                 }
             }
 
-            nomePaciente.setText(paciente.getNome());
+            nomePaciente.setText(paciente.getNomeCompleto());
             telefonePaciente.setText(paciente.getTelefone());
 
             setText(null);
