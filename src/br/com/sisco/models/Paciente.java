@@ -1,24 +1,80 @@
 package br.com.sisco.models;
 
+import java.util.Date;
+
 /**
  *
  * @author brunorocha
  */
 public class Paciente {
 
-    private String nome;
-    private String telefone;
-
-    public Paciente(String nome, String telefone) {
-        this.nome = nome;
+    String nomeCompleto;
+    Date dataNascimento;
+    String matricula;
+    String vinculo;
+    String telefone;
+    
+    public Paciente() {
+        
+    }
+    
+    /*
+    
+        Esse construtor foi adicionado para inicializar os atributos nomeCompleto e telefone
+        por que na classe PacientesController utiliza a classe pra criar os itens de exemplo da
+        lista. Deve ser refatorado posteriormente.
+        
+    */
+    public Paciente(String nomeCompleto, String telefone) {
+        this.nomeCompleto = nomeCompleto;
         this.telefone = telefone;
     }
+    
+    public void cadastrar(){
+        
+    }
+    
+    public void alterar(){
+        
+    }
 
-    public String getNome() {
-        return this.nome;
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getVinculo() {
+        return vinculo;
+    }
+
+    public void setVinculo(String vinculo) {
+        this.vinculo = vinculo;
     }
 
     public String getTelefone() {
-        return this.telefone;
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }
