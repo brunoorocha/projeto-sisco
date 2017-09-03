@@ -1,0 +1,326 @@
+/*
+ *
+ *  Sisco CSS
+ *
+ */
+
+
+.sisco-mainPane {
+    -fx-background-color: #fff;
+    -fx-font-family: 'Montserrat';
+    -fx-font-size: 16;
+    -fx-text-fill: #4a4a4a;
+}
+
+.sisco-centerPane{
+    -fx-padding: 20;
+}
+
+.sisco-logo {
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4a4a4a;
+}
+
+.sisco-topHeader {
+    -fx-border-color: #ccc;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 15 20;
+}
+
+.sisco-topNav {
+    -fx-border-color: #ccc;
+    -fx-border-width: 0 0 1 0;
+}
+
+.sisco-topNav .navLabel{
+    -fx-padding: 15 50 10 50;
+    -fx-text-fill: #777;
+    -fx-border-color: #fff;
+    -fx-border-width: 0 0 5 0;
+}
+
+.sisco-topNav .navLabel:hover, .sisco-topNav .navLabelActived{
+    -fx-text-fill: #333;
+    -fx-border-color: #1bb42d;
+}
+
+.sisco-uiControlls {
+    -fx-border-color: #ccc;
+    -fx-border-radius: 50;
+    -fx-background-color: #fff;
+}
+
+.sisco-uiControlls:hover {
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 50;
+}
+
+.sisco-uiControllsLabel {
+    -fx-padding: 10 10 10 0;
+}
+
+.sisco-uiControllsButton {
+    -fx-padding: 10 15;
+}
+
+.sisco-left-side {
+    -fx-border-color: #ccc;
+    -fx-border-width: 0 1 0 0;
+}
+
+.text-field{
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-padding: 8 15 8 15;
+    -fx-font-size: 14;
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+}
+
+.text-field:focused {
+    -fx-border-color: #6bccd7;
+}
+
+.date-picker {
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+}
+
+.date-picker:focused {
+    -fx-border-color: #6bccd7;
+}
+
+.date-picker > .arrow-button{
+    -fx-border-radius: 0 50 50 0;
+    -fx-background-radius: 0 50 50 0;
+    -fx-background-color: #dfdfdf;
+    -fx-padding: 10 15 10 12;
+}
+
+.date-picker:hover > .arrow-button{
+    -fx-background-color: #ccc;
+}
+
+.date-picker > .text-field {
+    -fx-background-color: #fff;
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.0), 0, 0, 0, 0);
+    -fx-border-width: 0;
+}
+
+.date-picker > .text-field:focused{
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+}
+
+.buttons {
+    -fx-font-size: 16;
+    -fx-border-width: 1;
+    -fx-background-radius: 50;
+    -fx-padding: 8 30;
+    -fx-background-color: #fff;
+    -fx-border-color: #888;
+    -fx-text-fill: #888;
+}
+
+.buttons:hover {
+    -fx-text-fill: #fff;
+    -fx-background-color: #888;
+}
+
+.button-green {
+    -fx-border-color: #1bb42d;
+    -fx-text-fill: #1bb42d;
+}
+
+.button-green:hover {
+    -fx-background-color: #1bb42d;
+    -fx-border-color: #1bb42d;
+    -fx-text-fill: #fff;
+}
+
+.button-red {
+    -fx-border-color: #f5325e;
+    -fx-text-fill: #f5325e;
+}
+
+.button-red:hover {
+    -fx-background-color: #f5325e;
+    -fx-border-color: #f5325e;
+    -fx-text-fill: #fff;
+}
+
+.arrow-left{
+    -fx-shape: "M43.16,47.917L27.236,31.994l15.718-15.718C43.594,15.725,44,14.91,44,14c0-1.657-1.343-3-3-3
+        c-0.807,0-1.536,0.318-2.075,0.835l-0.008-0.008l-18,18l0.001,0.001C20.352,30.374,20,31.139,20,31.987c0,0.002,0,0.004,0,0.007
+        c0,0.002,0,0.004,0,0.007c0,0.849,0.352,1.613,0.918,2.159l-0.001,0.001l18,18l0.001-0.001C39.458,52.68,40.191,53,41,53
+        c1.657,0,3-1.343,3-3C44,49.191,43.68,48.458,43.16,47.917L43.16,47.917z";
+    -fx-background-color: #777;
+    -fx-font-size: 14;
+    -fx-scale-shape: true;
+}
+
+.arrow-right{
+    -fx-shape: "M44,31.994c0-0.002,0-0.005,0-0.007c0-0.848-0.352-1.613-0.918-2.159l0.001-0.001l-18-18l-0.008,0.008
+        C24.536,11.318,23.806,11,23,11c-1.657,0-3,1.343-3,3c0,0.91,0.406,1.725,1.046,2.275l15.718,15.718L20.84,47.917l0.001,0.001
+        C20.321,48.458,20,49.191,20,50c0,1.657,1.343,3,3,3c0.809,0,1.542-0.32,2.082-0.841l0.001,0.001l18-18l-0.001-0.001
+        C43.648,33.613,44,32.848,44,32C44,31.998,44,31.996,44,31.994z";
+    -fx-background-color: #777;
+    -fx-font-size: 14;
+    -fx-scale-shape: true;
+}
+
+
+.combo-box .list-view {
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-translate-y: 5;
+    -fx-effect: dropshadow(one-pass-box , black , 0, 0.0, 0, 0);
+}
+
+.combo-box .list-view {
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-translate-y: 5;
+    -fx-effect: dropshadow(one-pass-box , black , 0, 0.0, 0, 0);
+}
+
+.combo-box, .choice-box {
+    -fx-padding: 2 0 2 10;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+}
+
+.table-agendamentos {
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+}
+
+.table-agendamentos .table-cell{
+    -fx-border-color: #ccc;
+    -fx-border-width: 0 1 1 0;
+}
+
+.table-agendamentos .table-cell .label{
+    -fx-font-size: 14;
+}
+
+.table-agendamentos .table-header {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #ccc;
+    -fx-border-width: 0 1 1 0;
+}
+
+.table-agendamentos .agendamento-marcado{
+    -fx-background-color: #e5fbe7;
+    -fx-border-color: #1bb42d;
+    -fx-border-width: 0 0 0 5;
+    -fx-padding: 0 20;
+}
+
+.table-agendamentos .agendamento-marcado:hover, .table-agendamentos .agendamento-cancelado:hover {
+    -fx-border-width: 1 1 1 5;
+}
+
+.table-agendamentos .agendamento-cancelado{
+    -fx-background-color: #ffe1ea;
+    -fx-border-color: #f5325e;
+    -fx-border-width: 0 0 0 5;
+    -fx-padding: 0 20;
+}
+
+.modal-mask{
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+
+}
+
+.modal-box {
+    -fx-background-color: #fff;
+    -fx-font-family: 'Montserrat';
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.3) , 5, 0.0 , 0 , 1 );
+}
+
+.modal-box .choice-box{
+    -fx-padding: 4 0;
+}
+
+.modal-header {
+    -fx-border-color: #ccc;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: #f5f5f5;
+}
+
+.modal-header .modal-title {
+    -fx-font-size: 16;
+}
+
+.modal-box .buttons {
+    -fx-font-size: 14;
+}
+
+.modal-box .label-bold{
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+.list-pacientes {
+    -fx-background-color: #fff;
+}
+
+.search-hbox {
+    -fx-border-color: #ccc;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 20;
+}
+
+.search-text-field {
+    -fx-padding: 8 40 8 15;
+    -fx-font-size: 14;
+}
+
+.search-icon {
+    -fx-shape: "M62.243,53.758L44.658,36.173C46.768,32.602,48,28.449,48,24C48,10.745,37.255,0,24,0S0,10.745,0,24s10.745,24,24,24
+        c4.449,0,8.602-1.232,12.173-3.342l17.584,17.584C54.843,63.329,56.343,64,58,64c3.314,0,6-2.686,6-6
+        C64,56.343,63.328,54.843,62.243,53.758z M24,42c-9.941,0-18-8.059-18-18c0-9.941,8.059-18,18-18c9.941,0,18,8.059,18,18
+        C42,33.941,33.941,42,24,42z";
+    -fx-background-color: #777;
+    -fx-scale-shape: true;
+}
+
+.accordion{
+
+}
+
+.accordion .titled-pane{
+    -fx-padding: 10 0;
+}
+
+.accordion .titled-pane .arrow-button{
+    -fx-translate-x: 870;
+}
+
+.accordion .titled-pane .title{
+    -fx-padding: 20 10;
+    -fx-background-color: #dfdfdf;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+}
+
+.accordion .titled-pane .content{
+    -fx-padding: 20 10;
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+}
+
+.scroll-pane {
+    -fx-background-color: #fff;
+}
