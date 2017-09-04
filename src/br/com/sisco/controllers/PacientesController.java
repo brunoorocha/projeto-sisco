@@ -55,7 +55,7 @@ public class PacientesController implements Initializable {
                 new Paciente("Francisco Alves", "(88) 99999-9999"),
                 new Paciente("Gabriela Duarte", "(88) 99999-9999")
         );
-
+                       
     }
 
     @Override

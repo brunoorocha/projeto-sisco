@@ -28,15 +28,7 @@ public class Paciente {
     public Paciente(String nomeCompleto, String telefone) {
         this.nomeCompleto = nomeCompleto;
         this.telefone = telefone;
-    }
-    
-    public void cadastrar(){
-        
-    }
-    
-    public void alterar(){
-        
-    }
+    }        
 
     public String getNomeCompleto() {
         return nomeCompleto;

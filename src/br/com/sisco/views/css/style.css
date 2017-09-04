@@ -319,8 +319,36 @@
     -fx-background-color: #fff;
     -fx-border-color: #ccc;
     -fx-border-width: 1;
+    -fx-min-height: 500;
 }
 
 .scroll-pane {
     -fx-background-color: #fff;
+}
+
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-padding: 0 3 0 0;
+}
+
+.scroll-bar .increment-button, 
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;        
+}
+
+.scroll-bar .track{
+    -fx-background-color: transparent;      
+}
+
+.scroll-bar .thumb{
+    -fx-background-color: rgba(0, 0, 0, 0.2);    
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-padding: 0;
+}
+
+.scroll-bar:hover .thumb{
+    -fx-background-color: rgba(0, 0, 0, 0.4);        
 }
