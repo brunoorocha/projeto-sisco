@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/brunorocha/NetBeansProjects/projeto-sisco/src/br/com/sisco/controllers/HomeController.java</file>
             <file>file:/home/brunorocha/NetBeansProjects/projeto-sisco/src/br/com/sisco/views/PacientesListCell.java</file>
+            <file>file:/home/brunorocha/NetBeansProjects/projeto-sisco/src/br/com/sisco/views/css/style.css</file>
             <file>file:/home/brunorocha/NetBeansProjects/projeto-sisco/src/br/com/sisco/models/Paciente.java</file>
             <file>file:/home/brunorocha/NetBeansProjects/projeto-sisco/src/br/com/sisco/controllers/PacientesController.java</file>
         </group>
