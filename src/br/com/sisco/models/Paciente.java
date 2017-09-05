@@ -8,11 +8,11 @@ import java.util.Date;
  */
 public class Paciente {
 
-    String nomeCompleto;
-    Date dataNascimento;
-    String matricula;
-    String vinculo;
-    String telefone;
+    private String nomeCompleto;
+    private Date dataNascimento;
+    private String matricula;
+    private String vinculo;
+    private String telefone;
     
     public Paciente() {
         
