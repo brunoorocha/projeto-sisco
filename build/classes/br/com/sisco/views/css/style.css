@@ -335,8 +335,7 @@
 .scroll-bar .increment-button, 
 .scroll-bar .decrement-button {
     -fx-background-color: transparent;    
-    -fx-opacity: 0;
-    -fx-translate-y: -10;
+    -fx-opacity: 0;    
 }
 
 .scroll-bar .track{
