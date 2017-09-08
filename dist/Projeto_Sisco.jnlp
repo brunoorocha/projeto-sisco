@@ -8,7 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Projeto_Sisco.jar" size="177615" download="eager" />
+    <jar href="Projeto_Sisco.jar" size="182358" download="eager" />
+    <jar href="lib/controlsfx-8.40.13.jar" size="1213306" download="eager" />
     <jar href="lib/mariadb-java-client-2.1.0.jar" size="495712" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Projeto_Sisco" >

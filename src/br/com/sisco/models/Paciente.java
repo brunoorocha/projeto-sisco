@@ -1,5 +1,6 @@
 package br.com.sisco.models;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -7,9 +8,10 @@ import java.util.Date;
  * @author brunorocha
  */
 public class Paciente {
-
+    
+    private int idPaciente;   
     private String nomeCompleto;
-    private Date dataNascimento;
+    private Calendar dataNascimento;
     private String matricula;
     private String vinculo;
     private String telefone;
@@ -25,11 +27,24 @@ public class Paciente {
         lista. Deve ser refatorado posteriormente.
         
     */
-    public Paciente(String nomeCompleto, String telefone) {
-        this.nomeCompleto = nomeCompleto;
+    public Paciente(String nomeCompleto, Calendar dataNascimento, String matricula, String vinculo, String telefone) {
+        this.idPaciente = 0;
+        this.nomeCompleto = nomeCompleto;        
+        this.dataNascimento = dataNascimento;
+        this.matricula = matricula;
+        this.vinculo = vinculo;
         this.telefone = telefone;
     }        
 
+    
+    public int getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
+    }
+    
     public String getNomeCompleto() {
         return nomeCompleto;
     }
@@ -38,11 +53,11 @@ public class Paciente {
         this.nomeCompleto = nomeCompleto;
     }
 
-    public Date getDataNascimento() {
+    public Calendar getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

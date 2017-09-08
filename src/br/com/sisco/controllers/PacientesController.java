@@ -5,6 +5,7 @@
  */
 package br.com.sisco.controllers;
 
+import br.com.sisco.dao.PacienteDAO;
 import br.com.sisco.models.Paciente;
 import br.com.sisco.views.PacientesListCell;
 import java.net.URL;
@@ -24,37 +25,16 @@ import javafx.scene.layout.StackPane;
  */
 public class PacientesController implements Initializable {
 
-    @FXML
-    private TextField searchField;
-
-    @FXML
-    private ListView pacientesListView;
-
-    @FXML
-    private StackPane rootPane;
-
-    @FXML
-    private Label agendaTab;
+    @FXML private TextField searchField;
+    @FXML private ListView pacientesListView;
+    @FXML private StackPane rootPane;
+    @FXML private Label agendaTab;
 
     private ObservableList<Paciente> pacientesList;
 
     public PacientesController() {
 
-        this.pacientesList = FXCollections.observableArrayList();
-        this.pacientesList.addAll(
-                new Paciente("Bruno Rocha", "(88) 99999-9999"),
-                new Paciente("Francisco Alves", "(88) 99999-9999"),
-                new Paciente("Gabriela Duarte", "(88) 99999-9999"),
-                new Paciente("Bruno Rocha", "(88) 99999-9999"),
-                new Paciente("Francisco Alves", "(88) 99999-9999"),
-                new Paciente("Gabriela Duarte", "(88) 99999-9999"),
-                new Paciente("Bruno Rocha", "(88) 99999-9999"),
-                new Paciente("Francisco Alves", "(88) 99999-9999"),
-                new Paciente("Gabriela Duarte", "(88) 99999-9999"),
-                new Paciente("Bruno Rocha", "(88) 99999-9999"),
-                new Paciente("Francisco Alves", "(88) 99999-9999"),
-                new Paciente("Gabriela Duarte", "(88) 99999-9999")
-        );
+        this.pacientesList = new PacienteDAO().listarPacientes();
                        
     }
 
@@ -70,5 +50,13 @@ public class PacientesController implements Initializable {
     @FXML
     private void hidePacientesPane() {
         rootPane.setVisible(false);
+    }
+    
+    @FXML
+    private void buscarPaciente() {
+        String nome = this.searchField.getText();
+        
+        this.pacientesList.clear();        
+        this.pacientesList.setAll(new PacienteDAO().buscarPaciente(nome));
     }
 }

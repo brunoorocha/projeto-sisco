@@ -285,7 +285,7 @@
                 </VBox>
             </center>
         </BorderPane>
-        <HBox fx:id="modalPane" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="modal-mask" visible="false">
+        <HBox fx:id="modalPane" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="modal-mask">
             <children>
                 <VBox maxHeight="-Infinity" prefHeight="478.0" prefWidth="505.0" styleClass="modal-box">
                     <children>
@@ -398,7 +398,7 @@
                                     <Insets right="10.0" />
                                  </GridPane.margin>
                               </HBox>
-                              <TextField GridPane.columnIndex="1" />
+                              <TextField fx:id="textFieldNomeCompleto" GridPane.columnIndex="1" />
                               <TextField maxWidth="-Infinity" prefHeight="36.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField maxWidth="-Infinity" prefHeight="36.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <DatePicker prefHeight="36.0" prefWidth="154.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -412,7 +412,7 @@
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Cancelar">
+                        <Button fx:id="modalBtnCancelar" mnemonicParsing="false" onAction="#modalBtnCancelarAction" text="Cancelar">
                            <styleClass>
                               <String fx:value="buttons" />
                               <String fx:value="sisco-uiControlls" />

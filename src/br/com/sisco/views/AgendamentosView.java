@@ -5,8 +5,11 @@
  */
 package br.com.sisco.views;
 
+import br.com.sisco.dao.PacienteDAO;
+import br.com.sisco.models.Paciente;
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,6 +38,10 @@ public class AgendamentosView extends Application {
         stage.setScene(scene);
         stage.setTitle("Sisco - Agendamentos");
         stage.show();
+        
+        
+        //Calendar c = Calendar.getInstance();
+        //c.set(1997, 8, 14);                
     }
 
     /**

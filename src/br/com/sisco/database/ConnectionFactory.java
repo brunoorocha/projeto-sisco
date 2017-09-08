@@ -13,14 +13,16 @@ import java.util.logging.Logger;
  */
 public class ConnectionFactory {
     public static Connection getConnection() {
-        /*
-            Essa url foi usada com o fim de testar a conexão com o SGBD, 
-            deve ser alterada para a url correta
-        */
-        String url = "jdbc:mysql://localhost:9090/database";
+        
+        String url = "jdbc:mysql://localhost/sisco";
         
         try {
-            return DriverManager.getConnection(url, "root", "root");
+            /*
+            
+                Vale lembrar que o usuário e senha mudam de um pc pro outro
+            
+            */
+            return DriverManager.getConnection(url, "bruno", "123");
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
         }
