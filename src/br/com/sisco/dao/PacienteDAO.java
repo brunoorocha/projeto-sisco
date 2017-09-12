@@ -18,11 +18,11 @@ import javafx.collections.ObservableList;
  */
 public class PacienteDAO {
     
-    public ObservableList<Paciente> listarPacientes() {                     
-        return this.buscarPaciente("");
+    public static ObservableList<Paciente> listarPacientes() {                     
+        return buscarPaciente("");
     }        
     
-    public ObservableList<Paciente> buscarPaciente(String nome) {        
+    public static ObservableList<Paciente> buscarPaciente(String nome) {        
         
         ObservableList<Paciente> lista = FXCollections.observableArrayList();                
         PreparedStatement ps;
@@ -58,7 +58,7 @@ public class PacienteDAO {
         }                
     }
     
-    public ObservableList<String> listarNomes() {
+    public static ObservableList<String> listarNomes() {
         ObservableList<String> lista = FXCollections.observableArrayList();                
         PreparedStatement ps;
         
@@ -79,7 +79,7 @@ public class PacienteDAO {
         }    
     }
     
-    public void adicionarPaciente(Paciente paciente) {
+    public static void adicionarPaciente(Paciente paciente) {
         PreparedStatement ps;
         
         try(Connection conn = ConnectionFactory.getConnection()) {
@@ -92,6 +92,8 @@ public class PacienteDAO {
             ps.setString(4, paciente.getVinculo());
             ps.setString(5, paciente.getTelefone());            
             
+            System.out.println("Paciente adicionado!");
+            
             ps.execute();
             ps.close();
             
@@ -100,11 +102,11 @@ public class PacienteDAO {
         }
     }
     
-    public void atualizarPaciente(Paciente paciente) {
+    public static void atualizarPaciente(Paciente paciente) {
         
     }
     
-    public void removerPaciente(int id) {
+    public static void removerPaciente(int id) {
         
     }
     

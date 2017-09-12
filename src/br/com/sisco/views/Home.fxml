@@ -285,7 +285,7 @@
                 </VBox>
             </center>
         </BorderPane>
-        <HBox fx:id="modalPane" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="modal-mask">
+        <HBox fx:id="modalPane" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="modal-mask" visible="false">
             <children>
                 <VBox maxHeight="-Infinity" prefHeight="478.0" prefWidth="505.0" styleClass="modal-box">
                     <children>
@@ -399,10 +399,10 @@
                                  </GridPane.margin>
                               </HBox>
                               <TextField fx:id="textFieldNomeCompleto" GridPane.columnIndex="1" />
-                              <TextField maxWidth="-Infinity" prefHeight="36.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField maxWidth="-Infinity" prefHeight="36.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <DatePicker prefHeight="36.0" prefWidth="154.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <ChoiceBox prefHeight="33.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="textFieldMatricula" maxWidth="-Infinity" prefHeight="36.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="textFieldTelefone" maxWidth="-Infinity" prefHeight="36.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <DatePicker fx:id="datePickerDataNascimento" prefHeight="36.0" prefWidth="154.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <ChoiceBox fx:id="choiceBoxVinculo" prefHeight="33.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
@@ -421,7 +421,7 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Concluir">
+                        <Button fx:id="modalBtnConcluir" mnemonicParsing="false" onAction="#modalBtnConcluirAction" text="Concluir">
                            <styleClass>
                               <String fx:value="buttons" />
                               <String fx:value="sisco-uiControlls" />

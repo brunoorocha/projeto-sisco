@@ -34,7 +34,7 @@ public class PacientesController implements Initializable {
 
     public PacientesController() {
 
-        this.pacientesList = new PacienteDAO().listarPacientes();
+        this.pacientesList = PacienteDAO.listarPacientes();
                        
     }
 
