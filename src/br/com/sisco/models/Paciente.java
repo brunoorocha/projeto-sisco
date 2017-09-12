@@ -1,7 +1,6 @@
 package br.com.sisco.models;
 
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  *
