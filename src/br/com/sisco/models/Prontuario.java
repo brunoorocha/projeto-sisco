@@ -8,7 +8,7 @@ import java.util.List;
  * @author brunorocha
  */
 public class Prontuario {
-    
+    private int idProntuario;
     private String queixaPrincipal;
     private String doencaGrave;
     private String febreReumatica;
@@ -135,5 +135,13 @@ public class Prontuario {
 
     public void setProcedimentos(List<Procedimento> procedimentos) {
         this.procedimentos = procedimentos;
+    }
+
+    public int getIdProntuario() {
+        return idProntuario;
+    }
+
+    public void setIdProntuario(int idProntuario) {
+        this.idProntuario = idProntuario;
     }
 }

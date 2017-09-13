@@ -76,6 +76,8 @@ public class ProcedimentoDAO {
         }
     }
     
+    public static void listarProcedimento(Procedimento procedimento) {
+    }
     
     
 }
