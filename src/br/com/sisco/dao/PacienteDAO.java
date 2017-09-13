@@ -13,7 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- *
+ * 
  * @author brunorocha
  */
 public class PacienteDAO {

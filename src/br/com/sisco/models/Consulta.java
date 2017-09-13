@@ -1,7 +1,7 @@
 
 package br.com.sisco.models;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class Consulta {
     
-    private Date data;
+    private Calendar data;
     private String hora;
     private int idPaciente;
         
@@ -17,11 +17,11 @@ public class Consulta {
         
     }
     
-    public Date getData() {
+    public Calendar getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(Calendar data) {
         this.data = data;
     }
 

@@ -2,10 +2,8 @@
 package br.com.sisco.dao;
 
 import br.com.sisco.database.ConnectionFactory;
-import br.com.sisco.models.Paciente;
 import br.com.sisco.models.Procedimento;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
