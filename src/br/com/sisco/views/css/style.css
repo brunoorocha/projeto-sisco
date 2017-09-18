@@ -389,3 +389,7 @@
     -fx-font-size: 14;
     -fx-font-weight: bold;
 }
+
+.anamnese-form .vbox {
+    -fx-padding: 10 30;
+}
