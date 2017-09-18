@@ -22,7 +22,7 @@ public class ConnectionFactory {
                 Vale lembrar que o usuário e senha mudam de um pc pro outro
             
             */
-            return DriverManager.getConnection(url, "bruno", "123");
+            return DriverManager.getConnection(url, "root", "123");
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
         }

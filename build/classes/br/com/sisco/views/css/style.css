@@ -316,11 +316,11 @@
     -fx-padding: 20 10;
     -fx-background-color: #dfdfdf;
     -fx-border-color: #ccc;
-    -fx-border-width: 1;
+    -fx-border-width: 1;    
 }
 
 .accordion .titled-pane .content{
-    -fx-padding: 20 10;
+    -fx-padding: 0;
     -fx-background-color: #fff;
     -fx-border-color: #ccc;
     -fx-border-width: 1;
@@ -376,4 +376,16 @@
     /*-fx-background-color: #e5fbe7;*/
     -fx-background-color: #1bb42d;
     -fx-text-fill: #fff;
+}
+
+
+.procedimentos-table .table-row {    
+    -fx-padding: 5 20;
+    -fx-border-color: #ccc;
+    -fx-border-width: 0 0 1 0;
+}
+
+.procedimentos-table .table-row .table-header {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
 }
