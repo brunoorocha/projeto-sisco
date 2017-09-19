@@ -110,4 +110,38 @@ public class PacienteDAO {
         
     }
     
+    
+    public static Paciente retornaPaciente (String nome){
+        
+        PreparedStatement ps;
+        Paciente paciente = new Paciente();
+        try(Connection conn = ConnectionFactory.getConnection()) {
+            
+            ps = conn.prepareStatement("SELECT * FROM paciente WHERE nomeCompleto = ?");
+            ps.setString(1, nome);
+            ResultSet resultSet = ps.executeQuery();
+            
+            if(resultSet.next()){
+                paciente.setNomeCompleto(resultSet.getString("nomeCompleto"));                
+                
+                Calendar dataNascimento = Calendar.getInstance();
+                dataNascimento.setTime(resultSet.getDate("dataNascimento"));
+                paciente.setDataNascimento(dataNascimento);
+                
+                paciente.setMatricula(resultSet.getString("matricula"));
+                paciente.setVinculo(resultSet.getString("vinculo"));
+                paciente.setTelefone(resultSet.getString("telefone"));
+                                
+            }
+            
+            ps.close();
+            return paciente;
+        }catch(SQLException e) {
+            throw new RuntimeException(e);
+            
+        }
+        
+    }
+    
+    
 }
