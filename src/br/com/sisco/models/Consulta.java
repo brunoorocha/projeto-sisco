@@ -12,6 +12,7 @@ public class Consulta {
     private Calendar data;
     private String hora;
     private int idPaciente;
+    private int status;
         
     public void cancelarConsulta(){
         

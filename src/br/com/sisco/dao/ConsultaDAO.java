@@ -20,11 +20,12 @@ public class ConsultaDAO {
         
         try(Connection conn = ConnectionFactory.getConnection()) {
             
-            ps = conn.prepareStatement("INSERT INTO consulta VALUES(NULL,?,?,?)");                                   
+            ps = conn.prepareStatement("INSERT INTO consulta VALUES(NULL,?,?,?,?)");                                   
             
             ps.setDate(1, new Date(novaConsulta.getData().getTime().getTime()));
             ps.setTime(2, new Time(Long.parseLong(novaConsulta.getHora())));
             ps.setInt(3, novaConsulta.getIdPaciente());
+            ps.setInt(4, 0);
                                 
             System.out.println("Consulta Agendada!");
             
