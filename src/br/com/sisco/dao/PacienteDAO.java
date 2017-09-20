@@ -37,6 +37,7 @@ public class PacienteDAO {
             while(resultSet.next()) {
                 Paciente paciente = new Paciente();
                 
+                paciente.setIdPaciente(resultSet.getInt("idPaciente"));                
                 paciente.setNomeCompleto(resultSet.getString("nomeCompleto"));                
                 
                 Calendar dataNascimento = Calendar.getInstance();
@@ -92,9 +93,18 @@ public class PacienteDAO {
             ps.setString(4, paciente.getVinculo());
             ps.setString(5, paciente.getTelefone());            
             
-            System.out.println("Paciente adicionado!");
-            
             ps.execute();
+            System.out.println("Paciente adicionado!");                        
+            
+            ObservableList<Paciente> pesquisa = buscarPaciente(paciente.getNomeCompleto());
+            
+            if(pesquisa.isEmpty()){
+                System.out.println("EMPTY!");
+            } else {
+                paciente.setIdPaciente(pesquisa.get(0).getIdPaciente());            
+                ProntuarioDAO.adicionarProntuario(paciente.getIdPaciente());                        
+            }
+            
             ps.close();
             
         } catch(SQLException e) {

@@ -14,32 +14,18 @@ import java.sql.SQLException;
  * @author brunorocha
  */
 public class ProntuarioDAO {
-    public static void adicionarProntuario(Prontuario prontuario) {
+    public static void adicionarProntuario(int idPaciente) {
         
         PreparedStatement ps;
         
         try(Connection conn = ConnectionFactory.getConnection()) {
             
-            ps = conn.prepareStatement("INSERT INTO prontuario VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?");                                   
-            
-            ps.setString(1, prontuario.getQueixaPrincipal());
-            ps.setString(2, prontuario.getDoencaGrave());
-            ps.setString(3, prontuario.getFebreReumatica());
-            ps.setString(4, prontuario.getTratamentoMedico());
-            ps.setString(5, prontuario.getMedicacao());
-            ps.setString(6, prontuario.getGravida());
-            ps.setString(7, prontuario.getAlergico());
-            ps.setString(8, prontuario.getHipertenco());
-            ps.setString(9, prontuario.getDiabetico());
-            ps.setString(10, prontuario.getProblemasGrastricos());
-            ps.setString(11, prontuario.getAnestesiaLocal());
-            ps.setString(12, prontuario.getHemorragia());
-            ps.setInt(13, prontuario.getIdPaciente());
-                     
-            
-            System.out.println("Informações do prontuario adicionadas!");
+            ps = conn.prepareStatement("INSERT INTO prontuario VALUES(NULL, '', '', '', '', '', '', '', '', '', '', '', '', ?)");
+            ps.setInt(1, idPaciente);                             
             
             ps.execute();
+            System.out.println("Prontuario criado!");
+            
             ps.close();
             
         } catch(SQLException e) {

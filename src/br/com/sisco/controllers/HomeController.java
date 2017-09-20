@@ -155,8 +155,15 @@ public class HomeController implements Initializable {
         novoPaciente.setMatricula(textFieldMatricula.getText());
         
         Calendar dataNascimento = Calendar.getInstance();        
-        dataNascimento.setTime(new Date(datePickerDataNascimento.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
         
+        String[] data = datePickerDataNascimento.getValue().toString().split("-");
+        
+        int dia = Integer.parseInt(data[2]);
+        int mes = Integer.parseInt(data[1]);
+        int ano = Integer.parseInt(data[0]);
+        
+        dataNascimento.set(ano, mes, dia);
+                
         novoPaciente.setDataNascimento(dataNascimento);
         novoPaciente.setTelefone(textFieldTelefone.getText());
         
