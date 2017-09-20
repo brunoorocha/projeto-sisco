@@ -176,54 +176,54 @@ public class HomeController implements Initializable {
         ObservableList<String> horarios = ConsultaDAO.listarHorarios();
         
         if(!horarios.isEmpty()) {
-        for(int i = 0; i < 4; i++) {                                           
-            HBox tc1 = this.tableCellFactory();
-            Label hr = new Label(horarios.get(i));
-            
-            tc1.getChildren().add(hr);            
-            gridPaneAgenda.add(tc1, 0, (i + 1));   
-            
-            ObservableList<Consulta> consultasNesseHorario = ConsultaDAO.listarConsultasPorHorario(horarios.get(i));
-                                    
-            for(int j = 0; j < 5; j++) {
-                HBox tableCell = this.tableCellFactory();                
-                
-                if(consultasNesseHorario.get(j).getStatus() != 0) {
-                    String nomePaciente = PacienteDAO.listarNomePeloId(consultasNesseHorario.get(j).getIdPaciente());
-                    Label consultaMarcada = new Label(nomePaciente);
-                    
-                    tableCell.getChildren().add(consultaMarcada);                                        
-                    
-                    if(consultasNesseHorario.get(j).getStatus() == 1) {                    
-                        consultaMarcada.getStyleClass().add("agendamento-marcado");
-                        
-                        Tooltip tooltip = new Tooltip("Agendamento marcado para\n "+ nomePaciente);
-                        consultaMarcada.setTooltip(tooltip);
-                    } else if(consultasNesseHorario.get(j).getStatus() == 2) {
-                        consultaMarcada.getStyleClass().add("agendamento-cancelado");
-                        
-                        Tooltip tooltip = new Tooltip("Agendamento cancelado para\n "+ nomePaciente);
-                        consultaMarcada.setTooltip(tooltip);
-                    }
-                    
-                    gridPaneAgenda.add(tableCell, (j + 1), (i + 1));
-                }                                
-            }
-        }                
-        
-//        for(int i = 0; i < 6; i++) {
-//            for(int j = 1; j < 5; j++) {
-//                int idx = (6 * (j - 1)) + i;
-//                
-//                if(idx % 6 == 0 || idx == 0) {
-//                    gridPaneAgenda.add(new Label(consultas.get(idx + 1).getHora()), i, j);
-//                    
-//                    for(int k = 0; k) {
-//                    
-//                    }
-//                }
-//            }
-//        }
+            for(int i = 0; i < 4; i++) {                                           
+                HBox tc1 = this.tableCellFactory();
+                Label hr = new Label(horarios.get(i));
+
+                tc1.getChildren().add(hr);            
+                gridPaneAgenda.add(tc1, 0, (i + 1));   
+
+                ObservableList<Consulta> consultasNesseHorario = ConsultaDAO.listarConsultasPorHorario(horarios.get(i));
+
+                for(int j = 0; j < 5; j++) {
+                    HBox tableCell = this.tableCellFactory();                
+
+                    if(consultasNesseHorario.get(j).getStatus() != 0) {
+                        String nomePaciente = PacienteDAO.listarNomePeloId(consultasNesseHorario.get(j).getIdPaciente());
+                        Label consultaMarcada = new Label(nomePaciente);
+
+                        tableCell.getChildren().add(consultaMarcada);                                        
+
+                        if(consultasNesseHorario.get(j).getStatus() == 1) {                    
+                            consultaMarcada.getStyleClass().add("agendamento-marcado");
+
+                            Tooltip tooltip = new Tooltip("Agendamento marcado para\n "+ nomePaciente);
+                            consultaMarcada.setTooltip(tooltip);
+                        } else if(consultasNesseHorario.get(j).getStatus() == 2) {
+                            consultaMarcada.getStyleClass().add("agendamento-cancelado");
+
+                            Tooltip tooltip = new Tooltip("Agendamento cancelado para\n "+ nomePaciente);
+                            consultaMarcada.setTooltip(tooltip);
+                        }
+
+                        gridPaneAgenda.add(tableCell, (j + 1), (i + 1));
+                    }                                
+                }
+            }                
+
+    //        for(int i = 0; i < 6; i++) {
+    //            for(int j = 1; j < 5; j++) {
+    //                int idx = (6 * (j - 1)) + i;
+    //                
+    //                if(idx % 6 == 0 || idx == 0) {
+    //                    gridPaneAgenda.add(new Label(consultas.get(idx + 1).getHora()), i, j);
+    //                    
+    //                    for(int k = 0; k) {
+    //                    
+    //                    }
+    //                }
+    //            }
+    //        }
         }
     }
     
