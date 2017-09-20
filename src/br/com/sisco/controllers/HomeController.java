@@ -167,8 +167,8 @@ public class HomeController implements Initializable {
     
     private void tableAgenda() {
         ObservableList<String> horarios = ConsultaDAO.listarHorarios();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         
+        if(!horarios.isEmpty()) {
         for(int i = 0; i < 4; i++) {                                           
             HBox tc1 = this.tableCellFactory();
             Label hr = new Label(horarios.get(i));
@@ -177,7 +177,7 @@ public class HomeController implements Initializable {
             gridPaneAgenda.add(tc1, 0, (i + 1));   
             
             ObservableList<Consulta> consultasNesseHorario = ConsultaDAO.listarConsultasPorHorario(horarios.get(i));
-            
+                                    
             for(int j = 0; j < 5; j++) {
                 HBox tableCell = this.tableCellFactory();                
                 
@@ -217,6 +217,7 @@ public class HomeController implements Initializable {
 //                }
 //            }
 //        }
+        }
     }
     
     private HBox tableCellFactory() {

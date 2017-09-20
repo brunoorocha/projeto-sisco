@@ -137,7 +137,7 @@ public class PacienteDAO {
     public static Paciente retornaPaciente (String nome){
         
         PreparedStatement ps;
-        Paciente paciente = new Paciente();
+        Paciente paciente = null;
         try(Connection conn = ConnectionFactory.getConnection()) {
             
             ps = conn.prepareStatement("SELECT * FROM paciente WHERE nomeCompleto = ?");
@@ -145,6 +145,7 @@ public class PacienteDAO {
             ResultSet resultSet = ps.executeQuery();
             
             if(resultSet.next()){
+                paciente = new Paciente();
                 paciente.setNomeCompleto(resultSet.getString("nomeCompleto"));                
                 
                 Calendar dataNascimento = Calendar.getInstance();
@@ -157,13 +158,13 @@ public class PacienteDAO {
                                 
             }
             
-            ps.close();
-            return paciente;
+            ps.close();            
         }catch(SQLException e) {
             throw new RuntimeException(e);
             
         }
         
+        return paciente;
     }
     
     
