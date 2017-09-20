@@ -28,13 +28,13 @@ public class AgendamentosView extends Application {
             System.out.println("Arquivo Home.fxml não existe ou não está disponível!");
         }
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root);                
 
         scene.getStylesheets().add("http://fonts.googleapis.com/css?family=Montserrat:400,700");
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.setTitle("Sisco - Agendamentos");
-        stage.show();                                     
+        stage.show();                                 
     }
 
     /**
@@ -43,5 +43,5 @@ public class AgendamentosView extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+        
 }

@@ -1,10 +1,13 @@
 
 package br.com.sisco.controllers;
 
+import br.com.sisco.dao.ConsultaDAO;
 import br.com.sisco.dao.PacienteDAO;
+import br.com.sisco.models.Consulta;
 import br.com.sisco.models.Paciente;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -17,12 +20,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -40,7 +46,7 @@ public class HomeController implements Initializable {
     @FXML private Button btnCancelarConsulta;
     @FXML private ChoiceBox choiceBoxTurno;
     @FXML private ChoiceBox choiceBoxMes;
-    
+        
     @FXML private HBox modalPane;
     @FXML private Button modalBtnConcluir;
     @FXML private Button modalBtnCancelar;
@@ -50,7 +56,9 @@ public class HomeController implements Initializable {
     @FXML private TextField textFieldMatricula;
     @FXML private TextField textFieldTelefone;
     @FXML private ChoiceBox choiceBoxVinculo;
-    @FXML private DatePicker datePickerDataNascimento;
+    @FXML private DatePicker datePickerDataNascimento;           
+    
+    @FXML private GridPane gridPaneAgenda;
     
     private Parent pacientesPane;
     
@@ -79,6 +87,8 @@ public class HomeController implements Initializable {
         
         ObservableList<String> listaNomes = PacienteDAO.listarNomes();
         TextFields.bindAutoCompletion(textFieldNomeCompleto, listaNomes);
+        
+        this.tableAgenda();
     }
 
     @FXML
@@ -153,5 +163,69 @@ public class HomeController implements Initializable {
         PacienteDAO.adicionarPaciente(novoPaciente);
         
         this.modalBtnCancelarAction();
+    }
+    
+    private void tableAgenda() {
+        ObservableList<String> horarios = ConsultaDAO.listarHorarios();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        
+        for(int i = 0; i < 4; i++) {                                           
+            HBox tc1 = this.tableCellFactory();
+            Label hr = new Label(horarios.get(i));
+            
+            tc1.getChildren().add(hr);            
+            gridPaneAgenda.add(tc1, 0, (i + 1));   
+            
+            ObservableList<Consulta> consultasNesseHorario = ConsultaDAO.listarConsultasPorHorario(horarios.get(i));
+            
+            for(int j = 0; j < 5; j++) {
+                HBox tableCell = this.tableCellFactory();                
+                
+                if(consultasNesseHorario.get(j).getStatus() != 0) {
+                    String nomePaciente = PacienteDAO.listarNomePeloId(consultasNesseHorario.get(j).getIdPaciente());
+                    Label consultaMarcada = new Label(nomePaciente);
+                    
+                    tableCell.getChildren().add(consultaMarcada);                                        
+                    
+                    if(consultasNesseHorario.get(j).getStatus() == 1) {                    
+                        consultaMarcada.getStyleClass().add("agendamento-marcado");
+                        
+                        Tooltip tooltip = new Tooltip("Agendamento marcado para\n "+ nomePaciente);
+                        consultaMarcada.setTooltip(tooltip);
+                    } else if(consultasNesseHorario.get(j).getStatus() == 2) {
+                        consultaMarcada.getStyleClass().add("agendamento-cancelado");
+                        
+                        Tooltip tooltip = new Tooltip("Agendamento cancelado para\n "+ nomePaciente);
+                        consultaMarcada.setTooltip(tooltip);
+                    }
+                    
+                    gridPaneAgenda.add(tableCell, (j + 1), (i + 1));
+                }                                
+            }
+        }                
+        
+//        for(int i = 0; i < 6; i++) {
+//            for(int j = 1; j < 5; j++) {
+//                int idx = (6 * (j - 1)) + i;
+//                
+//                if(idx % 6 == 0 || idx == 0) {
+//                    gridPaneAgenda.add(new Label(consultas.get(idx + 1).getHora()), i, j);
+//                    
+//                    for(int k = 0; k) {
+//                    
+//                    }
+//                }
+//            }
+//        }
+    }
+    
+    private HBox tableCellFactory() {
+        HBox tableCell = new HBox();
+
+        //tableCell.getStyleClass().add("table-cell");
+        tableCell.getStyleClass().add("table-cell-nohover");
+        tableCell.setAlignment(Pos.CENTER);
+
+        return tableCell;
     }
 }

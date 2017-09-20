@@ -102,6 +102,29 @@ public class PacienteDAO {
         }
     }
     
+    public static String listarNomePeloId(int id) {        
+        String nome = null;
+        PreparedStatement ps;
+        
+        try(Connection conn = ConnectionFactory.getConnection()) {
+            
+            ps = conn.prepareStatement("SELECT nomeCompleto FROM paciente WHERE idPaciente = ?");                        
+            ps.setInt(1, id);
+            
+            ResultSet resultSet = ps.executeQuery();
+            
+            if(resultSet.next()) {                                
+                nome = resultSet.getString("nomeCompleto");
+            }
+            
+            ps.close();
+            return nome;
+            
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }    
+    }
+    
     public static void atualizarPaciente(Paciente paciente) {
         
     }

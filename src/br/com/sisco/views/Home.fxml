@@ -106,7 +106,7 @@
                                 </GridPane>
                             </children>
                         </HBox>
-                        <GridPane prefHeight="300.0" styleClass="table-agendamentos">
+                        <GridPane fx:id="gridPaneAgenda" prefHeight="300.0" styleClass="table-agendamentos">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -129,7 +129,7 @@
                                     </children>
                                     <styleClass>
                                         <String fx:value="table-header" />
-                                        <String fx:value="table-cell" />
+                                        <String fx:value="table-cell-nohover" />
                                     </styleClass>
                                 </HBox>
                                 <HBox alignment="CENTER" layoutX="11.0" layoutY="12.0" GridPane.columnIndex="1" GridPane.vgrow="NEVER">
@@ -138,7 +138,7 @@
                                     </children>
                                     <styleClass>
                                         <String fx:value="table-header" />
-                                        <String fx:value="table-cell" />
+                                        <String fx:value="table-cell-nohover" />
                                     </styleClass>
                                 </HBox>
                                 <HBox alignment="CENTER" layoutX="164.0" layoutY="12.0" GridPane.columnIndex="2" GridPane.vgrow="NEVER">
@@ -147,7 +147,7 @@
                                     </children>
                                     <styleClass>
                                         <String fx:value="table-header" />
-                                        <String fx:value="table-cell" />
+                                        <String fx:value="table-cell-nohover" />
                                     </styleClass>
                                 </HBox>
                                 <HBox alignment="CENTER" layoutX="11.0" layoutY="12.0" GridPane.columnIndex="3" GridPane.vgrow="NEVER">
@@ -156,7 +156,7 @@
                                     </children>
                                     <styleClass>
                                         <String fx:value="table-header" />
-                                        <String fx:value="table-cell" />
+                                        <String fx:value="table-cell-nohover" />
                                     </styleClass>
                                 </HBox>
                                 <HBox alignment="CENTER" layoutX="11.0" layoutY="12.0" GridPane.columnIndex="4" GridPane.vgrow="NEVER">
@@ -165,7 +165,7 @@
                                     </children>
                                     <styleClass>
                                         <String fx:value="table-header" />
-                                        <String fx:value="table-cell" />
+                                        <String fx:value="table-cell-nohover" />
                                     </styleClass>
                                 </HBox>
                                 <HBox alignment="CENTER" layoutX="11.0" layoutY="12.0" GridPane.columnIndex="5" GridPane.vgrow="NEVER">
@@ -174,47 +174,35 @@
                                     </children>
                                     <styleClass>
                                         <String fx:value="table-header" />
-                                        <String fx:value="table-cell" />
+                                        <String fx:value="table-cell-nohover" />
                                     </styleClass>
                                 </HBox>
-                                <HBox alignment="CENTER" layoutX="11.0" layoutY="33.0" styleClass="table-cell" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+                                <HBox alignment="CENTER" layoutX="11.0" layoutY="33.0" styleClass="table-cell-nohover" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                                     <children>
                                         <Label text="08:00" />
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+                                <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell-nohover" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
                                     <children>
                                         <Label text="09:00" />
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.rowIndex="3" GridPane.vgrow="NEVER">
+                                <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell-nohover" GridPane.rowIndex="3" GridPane.vgrow="NEVER">
                                     <children>
                                         <Label text="10:00" />
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER" layoutX="11.0" layoutY="77.0" styleClass="table-cell" GridPane.rowIndex="4" GridPane.vgrow="NEVER">
+                                <HBox alignment="CENTER" layoutX="11.0" layoutY="77.0" styleClass="table-cell-nohover" GridPane.rowIndex="4" GridPane.vgrow="NEVER">
                                     <children>
                                         <Label text="11:00" />
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER" layoutX="11.0" layoutY="250.0" styleClass="table-cell" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                    <children>
-                                        <Label prefHeight="60.0" prefWidth="150.0" styleClass="agendamento-marcado" text="Bruno Rocha" />
-                                    </children>
-                                </HBox>
+                                <HBox alignment="CENTER" layoutX="11.0" layoutY="250.0" styleClass="table-cell" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                    <children>
-                                        <Label prefHeight="60.0" prefWidth="150.0" styleClass="agendamento-cancelado" text="Gabriela Nayara" />
-                                    </children>
-                                </HBox>
+                                <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                 <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                    <children>
-                                        <Label prefHeight="60.0" prefWidth="150.0" styleClass="agendamento-marcado" text="Franciso Alves" />
-                                    </children>
-                                </HBox>
+                                <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                 <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                 <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                                 <HBox alignment="CENTER" layoutX="11.0" layoutY="11.0" styleClass="table-cell" GridPane.columnIndex="3" GridPane.rowIndex="1" />

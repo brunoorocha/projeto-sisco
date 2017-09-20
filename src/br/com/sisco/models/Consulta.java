@@ -13,9 +13,13 @@ public class Consulta {
     private String hora;
     private int idPaciente;
     private int status;
-        
-    public void cancelarConsulta(){
-        
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
     
     public Calendar getData() {

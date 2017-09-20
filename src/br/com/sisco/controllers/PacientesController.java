@@ -58,7 +58,7 @@ public class PacientesController implements Initializable {
 
         pacientesListView.setItems(pacientesList);
         pacientesListView.setCellFactory(pacientesListCell -> new PacientesListCell());
-
+        
     }
 
     @FXML
@@ -108,5 +108,5 @@ public class PacientesController implements Initializable {
         textFieldTelefone.setDisable(value);
         choiceBoxVinculo.setDisable(value);
         datePickerDataNascimento.setDisable(value);
-    }
+    }  
 }
