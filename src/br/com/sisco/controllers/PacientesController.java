@@ -9,7 +9,10 @@ import br.com.sisco.dao.PacienteDAO;
 import br.com.sisco.models.Paciente;
 import br.com.sisco.views.PacientesListCell;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,11 +57,14 @@ public class PacientesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<String> vinculoOptions = FXCollections.observableArrayList("", "Aluno", "Professor", "Funcionário", "Outro");
         searchField.setPromptText("Pesquise um paciente pelo nome");
 
         pacientesListView.setItems(pacientesList);
         pacientesListView.setCellFactory(pacientesListCell -> new PacientesListCell());
+        choiceBoxVinculo.setItems(vinculoOptions);
         
+        preencherCampos("Bruno Rocha da Silva");
     }
 
     @FXML
@@ -108,5 +114,23 @@ public class PacientesController implements Initializable {
         textFieldTelefone.setDisable(value);
         choiceBoxVinculo.setDisable(value);
         datePickerDataNascimento.setDisable(value);
-    }  
+    }
+    
+    private void preencherCampos(String nome){
+        Paciente paciente = PacienteDAO.retornaPaciente(nome);
+        
+        if(paciente != null) {
+            textFieldNomeCompleto.setText(paciente.getNomeCompleto());
+            textFieldMatricula.setText(paciente.getMatricula());
+            textFieldTelefone.setText(paciente.getTelefone());
+            choiceBoxVinculo.setValue(paciente.getVinculo());                
+
+            int dia = paciente.getDataNascimento().get(Calendar.DAY_OF_MONTH);
+            int mes = paciente.getDataNascimento().get(Calendar.MONTH) + 1;
+            int ano = paciente.getDataNascimento().get(Calendar.YEAR);
+
+            LocalDate data = LocalDate.of(ano, mes, dia);
+            datePickerDataNascimento.setValue(data);
+        }                
+    }
 }
