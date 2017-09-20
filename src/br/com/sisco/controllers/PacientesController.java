@@ -46,6 +46,20 @@ public class PacientesController implements Initializable {
     @FXML private ChoiceBox choiceBoxVinculo;
     @FXML private DatePicker datePickerDataNascimento;
     
+    // Campos da área de anamnese
+    @FXML private TextField textFieldQueixa;
+    @FXML private TextField textFieldDoenca;
+    @FXML private TextField textFieldReumatica;
+    @FXML private TextField textFieldTratamento;
+    @FXML private TextField textFieldMedicacao;
+    @FXML private TextField textFieldGravida;
+    @FXML private TextField textFieldAlergico;
+    @FXML private TextField textFieldHipertenso;
+    @FXML private TextField textFieldDiabetico;
+    @FXML private TextField textFieldGastricos;
+    @FXML private TextField textFieldAnestesia;
+    @FXML private TextField textFieldHemorragia;
+    
 
     private ObservableList<Paciente> pacientesList;
 
@@ -114,6 +128,19 @@ public class PacientesController implements Initializable {
         textFieldTelefone.setDisable(value);
         choiceBoxVinculo.setDisable(value);
         datePickerDataNascimento.setDisable(value);
+        
+        textFieldQueixa.setDisable(value);
+        textFieldDoenca.setDisable(value);
+        textFieldReumatica.setDisable(value);
+        textFieldTratamento.setDisable(value);
+        textFieldMedicacao.setDisable(value);
+        textFieldGravida.setDisable(value);
+        textFieldAlergico.setDisable(value);
+        textFieldHipertenso.setDisable(value);
+        textFieldDiabetico.setDisable(value);
+        textFieldGastricos.setDisable(value);
+        textFieldAnestesia.setDisable(value);
+        textFieldHemorragia.setDisable(value);
     }
     
     private void preencherCampos(String nome){
