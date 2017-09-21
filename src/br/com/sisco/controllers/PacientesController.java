@@ -6,12 +6,16 @@
 package br.com.sisco.controllers;
 
 import br.com.sisco.dao.PacienteDAO;
+import br.com.sisco.dao.ProntuarioDAO;
 import br.com.sisco.models.Paciente;
+import br.com.sisco.models.Prontuario;
 import br.com.sisco.views.PacientesListCell;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -60,6 +64,8 @@ public class PacientesController implements Initializable {
     @FXML private TextField textFieldAnestesia;
     @FXML private TextField textFieldHemorragia;
     
+    private int selectedIdPaciente = 0;
+    
 
     private ObservableList<Paciente> pacientesList;
 
@@ -76,9 +82,33 @@ public class PacientesController implements Initializable {
 
         pacientesListView.setItems(pacientesList);
         pacientesListView.setCellFactory(pacientesListCell -> new PacientesListCell());
-        choiceBoxVinculo.setItems(vinculoOptions);
+        choiceBoxVinculo.setItems(vinculoOptions);                
         
-        preencherCampos("Bruno Rocha da Silva");
+        pacientesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                Paciente p = (Paciente) newValue;
+                
+                Prontuario prontuario = ProntuarioDAO.listarProntuario(p.getIdPaciente());
+                selectedIdPaciente = p.getIdPaciente();
+                
+                preencherCampos(p.getNomeCompleto());        
+                if(prontuario != null) {
+                    textFieldQueixa.setText(prontuario.getQueixaPrincipal());
+                    textFieldDoenca.setText(prontuario.getDoencaGrave());
+                    textFieldReumatica.setText(prontuario.getFebreReumatica());
+                    textFieldTratamento.setText(prontuario.getTratamentoMedico());
+                    textFieldMedicacao.setText(prontuario.getMedicacao());
+                    textFieldGravida.setText(prontuario.getGravida());
+                    textFieldAlergico.setText(prontuario.getAlergico());
+                    textFieldHipertenso.setText(prontuario.getHipertenco());
+                    textFieldDiabetico.setText(prontuario.getDiabetico());
+                    textFieldGastricos.setText(prontuario.getProblemasGrastricos());
+                    textFieldAnestesia.setText(prontuario.getAnestesiaLocal());
+                    textFieldHemorragia.setText(prontuario.getHemorragia());
+                }   
+            }
+        });
     }
 
     @FXML
@@ -119,6 +149,24 @@ public class PacientesController implements Initializable {
     private void salvarButtonAction() {
         salvarButton.setVisible(false);
         
+        Prontuario pEditado = new Prontuario();
+        
+        pEditado.setIdPaciente(selectedIdPaciente);
+        pEditado.setQueixaPrincipal(textFieldQueixa.getText());        
+        pEditado.setDoencaGrave(textFieldDoenca.getText());                
+        pEditado.setFebreReumatica(textFieldReumatica.getText());
+        pEditado.setTratamentoMedico(textFieldTratamento.getText());
+        pEditado.setMedicacao(textFieldMedicacao.getText());
+        pEditado.setGravida(textFieldGravida.getText());
+        pEditado.setAlergico(textFieldAlergico.getText());
+        pEditado.setHipertenco(textFieldHipertenso.getText());
+        pEditado.setDiabetico(textFieldDiabetico.getText());
+        pEditado.setProblemasGrastricos(textFieldGastricos.getText());
+        pEditado.setAnestesiaLocal(textFieldAnestesia.getText());
+        pEditado.setHemorragia(textFieldHemorragia.getText());
+        
+        ProntuarioDAO.editarProntuario(pEditado);
+        
         this.setDisableFields(true);
     }            
     
@@ -158,6 +206,6 @@ public class PacientesController implements Initializable {
 
             LocalDate data = LocalDate.of(ano, mes, dia);
             datePickerDataNascimento.setValue(data);
-        }                
+        }                                      
     }
 }

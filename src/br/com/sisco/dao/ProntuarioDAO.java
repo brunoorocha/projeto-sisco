@@ -39,8 +39,8 @@ public class ProntuarioDAO {
         try(Connection conn = ConnectionFactory.getConnection()) {
             
             ps = conn.prepareStatement("UPDATE prontuario SET queixaPrincipal = ?, doencaGrave = ?, febreReumatica = ?, "
-                    + "tratamentoMedico = ?, medicacao = ?, gravida = ?, alergico = ?, hipertenco = ?, diabetico = ?,"
-                    + " problemasGrastricos = ?, anestesiaLocal = ?, hemorragia = ? WHERE idProntuario = ?");                                   
+                    + "tratamentoMedico = ?, medicacao = ?, gravida = ?, alergico = ?, hipertenso = ?, diabetico = ?,"
+                    + " problemasGastricos = ?, anestesiaLocal = ?, hemorragia = ? WHERE idPaciente = ?");                                   
             
             ps.setString(1, prontuario.getQueixaPrincipal());
             ps.setString(2, prontuario.getDoencaGrave());
@@ -69,6 +69,7 @@ public class ProntuarioDAO {
     public static Prontuario listarProntuario(int idPaciente){
          
         PreparedStatement ps;
+        Prontuario prontuario = null;
         
         try(Connection conn = ConnectionFactory.getConnection()) {
             
@@ -76,21 +77,23 @@ public class ProntuarioDAO {
             ps.setInt(1, idPaciente);
             
             ResultSet resultSet = ps.executeQuery();
+            prontuario = new Prontuario();
             
-            Prontuario prontuario = new Prontuario();
-            
-            prontuario.setQueixaPrincipal(resultSet.getString("queixaPrincipal"));
-            prontuario.setDoencaGrave(resultSet.getString("doencaGrave"));
-            prontuario.setFebreReumatica(resultSet.getString("febreReumatica"));
-            prontuario.setTratamentoMedico(resultSet.getString("tratamentoMedico"));
-            prontuario.setMedicacao(resultSet.getString("medicacao"));
-            prontuario.setGravida(resultSet.getString("gravida"));
-            prontuario.setAlergico(resultSet.getString("alergico"));
-            prontuario.setHipertenco(resultSet.getString("hipertenso"));
-            prontuario.setDiabetico(resultSet.getString("diabetico"));
-            prontuario.setProblemasGrastricos(resultSet.getString("problemasGastricos"));
-            prontuario.setAnestesiaLocal(resultSet.getString("anestesiaLocal"));
-            prontuario.setHemorragia(resultSet.getString("hemorragia"));
+            if(resultSet.next()) {                
+
+                prontuario.setQueixaPrincipal(resultSet.getString("queixaPrincipal"));
+                prontuario.setDoencaGrave(resultSet.getString("doencaGrave"));
+                prontuario.setFebreReumatica(resultSet.getString("febreReumatica"));
+                prontuario.setTratamentoMedico(resultSet.getString("tratamentoMedico"));
+                prontuario.setMedicacao(resultSet.getString("medicacao"));
+                prontuario.setGravida(resultSet.getString("gravida"));
+                prontuario.setAlergico(resultSet.getString("alergico"));
+                prontuario.setHipertenco(resultSet.getString("hipertenso"));
+                prontuario.setDiabetico(resultSet.getString("diabetico"));
+                prontuario.setProblemasGrastricos(resultSet.getString("problemasGastricos"));
+                prontuario.setAnestesiaLocal(resultSet.getString("anestesiaLocal"));
+                prontuario.setHemorragia(resultSet.getString("hemorragia"));
+            }            
             
             ps.close();
             return prontuario;
