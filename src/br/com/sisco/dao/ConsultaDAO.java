@@ -18,19 +18,26 @@ import javafx.collections.ObservableList;
  * @author brunorocha
  */
 public class ConsultaDAO {
-    public static void agendarConsulta(Consulta novaConsulta){
+    
+    
+    public static void agendarConsulta(int idConsulta, int idPaciente){
         PreparedStatement ps;
         
         try(Connection conn = ConnectionFactory.getConnection()) {
             
-            ps = conn.prepareStatement("INSERT INTO consulta VALUES(NULL,?,?,?,?)");                                   
+            //ps = conn.prepareStatement("INSERT INTO consulta VALUES(NULL,?,?,?,?)");                                   
             
-            ps.setDate(1, new Date(novaConsulta.getData().getTime().getTime()));
-            ps.setTime(2, Time.valueOf(novaConsulta.getHora() + ":00"));
-            ps.setInt(3, novaConsulta.getIdPaciente());
-            ps.setInt(4, 0);
+//            ps.setDate(1, new Date(novaConsulta.getData().getTime().getTime()));
+//            ps.setTime(2, Time.valueOf(novaConsulta.getHora() + ":00"));
+//            ps.setInt(3, novaConsulta.getIdPaciente());
+//            ps.setInt(4, 0);
+
+            ps = conn.prepareStatement("UPDATE consulta SET idPaciente = ?, status = 1 WHERE idConsulta = ?");
+            
+            ps.setInt(1, idPaciente);
+            ps.setInt(2, idConsulta);
                                 
-            System.out.println("Consulta Agendada!");
+            System.out.println("Consulta Agendada! Paciente: "+ idPaciente +", consulta: "+ idConsulta);
             
             ps.execute();
             ps.close();
@@ -156,5 +163,32 @@ public class ConsultaDAO {
         }        
         
         return consultas;
+    }
+    
+    public static int retornaIdConsulta(Calendar data, String hora) {
+        int idConsulta = 0;
+        PreparedStatement ps;
+        
+        try(Connection conn = ConnectionFactory.getConnection()) {
+            
+            ps = conn.prepareStatement("SELECT idConsulta FROM consulta WHERE data = ? AND hora = ?");
+            
+            ps.setDate(1, new Date(data.getTime().getTime()));
+            ps.setTime(2, Time.valueOf(hora));
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()) {                                
+                idConsulta = rs.getInt("idConsulta");
+            }
+            
+            ps.close();
+            rs.close();
+            
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }        
+        
+        return idConsulta;
     }
 }

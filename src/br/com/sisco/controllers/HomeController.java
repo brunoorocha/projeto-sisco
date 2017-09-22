@@ -172,9 +172,7 @@ public class HomeController implements Initializable {
         
         novoPaciente = PacienteDAO.retornaPaciente(textFieldNomeCompleto.getText());
         
-        // Criando nova consulta
-        
-        Consulta novaConsulta = new Consulta();
+        // Agendando consulta               
         
         data = labelData.getText().split("/");
         
@@ -185,13 +183,9 @@ public class HomeController implements Initializable {
         Calendar dataConsulta = Calendar.getInstance();
         dataConsulta.set(ano, mes - 1, dia);
         
-        novaConsulta.setData(dataConsulta);
-        novaConsulta.setHora(labelHora.getText());
-        novaConsulta.setIdPaciente(novoPaciente.getIdPaciente());
-        
-        System.out.println(""+ novaConsulta.getIdPaciente());
-        
-        ConsultaDAO.agendarConsulta(novaConsulta);
+        int idConsulta = ConsultaDAO.retornaIdConsulta(dataConsulta, labelHora.getText()+ ":00");
+              
+        ConsultaDAO.agendarConsulta(idConsulta, novoPaciente.getIdPaciente());
         
         this.modalBtnCancelarAction();
         this.tableAgenda();

@@ -9,10 +9,20 @@ import java.util.Calendar;
  */
 public class Consulta {
     
-    private Calendar data;
+    private int idConsulta;   
+    private Calendar data;    
     private String hora;
     private int idPaciente;
     private int status;
+    
+    
+    public int getIdConsulta() {
+        return idConsulta;
+    }
+
+    public void setIdConsulta(int idConsulta) {
+        this.idConsulta = idConsulta;
+    }
 
     public int getStatus() {
         return status;
