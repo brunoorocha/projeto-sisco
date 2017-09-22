@@ -80,7 +80,7 @@ public class ProntuarioDAO {
             prontuario = new Prontuario();
             
             if(resultSet.next()) {                
-
+                prontuario.setIdProntuario(resultSet.getInt("idProntuario"));
                 prontuario.setQueixaPrincipal(resultSet.getString("queixaPrincipal"));
                 prontuario.setDoencaGrave(resultSet.getString("doencaGrave"));
                 prontuario.setFebreReumatica(resultSet.getString("febreReumatica"));

@@ -7,11 +7,8 @@ import br.com.sisco.models.Consulta;
 import br.com.sisco.models.Paciente;
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
@@ -21,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -28,6 +26,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -48,6 +47,8 @@ public class HomeController implements Initializable {
     @FXML private ChoiceBox choiceBoxMes;
         
     @FXML private HBox modalPane;
+    @FXML private Label labelData;
+    @FXML private Label labelHora;
     @FXML private Button modalBtnConcluir;
     @FXML private Button modalBtnCancelar;
     @FXML private Label pacientesTab;
@@ -58,7 +59,7 @@ public class HomeController implements Initializable {
     @FXML private ChoiceBox choiceBoxVinculo;
     @FXML private DatePicker datePickerDataNascimento;           
     
-    @FXML private GridPane gridPaneAgenda;
+    @FXML private GridPane gridPaneAgenda;    
     
     private Parent pacientesPane;
     
@@ -112,7 +113,7 @@ public class HomeController implements Initializable {
     }
     
     @FXML
-    private void btnAgendarConsultaAction(ActionEvent event) {
+    private void btnAgendarConsultaAction() {
         
         this.modalPane.setVisible(true);
         
@@ -166,10 +167,34 @@ public class HomeController implements Initializable {
                 
         novoPaciente.setDataNascimento(dataNascimento);
         novoPaciente.setTelefone(textFieldTelefone.getText());
-        
+                
         PacienteDAO.adicionarPaciente(novoPaciente);
         
+        novoPaciente = PacienteDAO.retornaPaciente(textFieldNomeCompleto.getText());
+        
+        // Criando nova consulta
+        
+        Consulta novaConsulta = new Consulta();
+        
+        data = labelData.getText().split("/");
+        
+        dia = Integer.parseInt(data[0]);
+        mes = Integer.parseInt(data[1]);
+        ano = Integer.parseInt(data[2]);
+        
+        Calendar dataConsulta = Calendar.getInstance();
+        dataConsulta.set(ano, mes - 1, dia);
+        
+        novaConsulta.setData(dataConsulta);
+        novaConsulta.setHora(labelHora.getText());
+        novaConsulta.setIdPaciente(novoPaciente.getIdPaciente());
+        
+        System.out.println(""+ novaConsulta.getIdPaciente());
+        
+        ConsultaDAO.agendarConsulta(novaConsulta);
+        
         this.modalBtnCancelarAction();
+        this.tableAgenda();
     }
     
     private void tableAgenda() {
@@ -177,7 +202,7 @@ public class HomeController implements Initializable {
         
         if(!horarios.isEmpty()) {
             for(int i = 0; i < 4; i++) {                                           
-                HBox tc1 = this.tableCellFactory();
+                HBox tc1 = this.tableCellFactory(false);
                 Label hr = new Label(horarios.get(i));
 
                 tc1.getChildren().add(hr);            
@@ -185,12 +210,12 @@ public class HomeController implements Initializable {
 
                 ObservableList<Consulta> consultasNesseHorario = ConsultaDAO.listarConsultasPorHorario(horarios.get(i));
 
-                for(int j = 0; j < 5; j++) {
-                    HBox tableCell = this.tableCellFactory();                
+                for(int j = 0; j < 5; j++) {                    
 
                     if(consultasNesseHorario.get(j).getStatus() != 0) {
                         String nomePaciente = PacienteDAO.listarNomePeloId(consultasNesseHorario.get(j).getIdPaciente());
                         Label consultaMarcada = new Label(nomePaciente);
+                        HBox tableCell = this.tableCellFactory(false);
 
                         tableCell.getChildren().add(consultaMarcada);                                        
 
@@ -206,34 +231,67 @@ public class HomeController implements Initializable {
                             consultaMarcada.setTooltip(tooltip);
                         }
 
+                        tableCell.setOnMouseClicked((MouseEvent e) -> {
+                            Node element = (Node) e.getSource();
+                            Node parent = element.getParent();
+                            
+                            System.out.println(parent.toString());
+                        });
+                        
                         gridPaneAgenda.add(tableCell, (j + 1), (i + 1));
-                    }                                
+                    } else {
+                        HBox tableCell = this.tableCellFactory(true);
+                        
+                        tableCell.setOnMouseClicked((MouseEvent e) -> {
+                            Node element = (Node) e.getSource();
+                            
+                            int col = GridPane.getColumnIndex(element);
+                            int row = GridPane.getRowIndex(element);
+                            
+                            String hora = horarios.get(row - 1);
+                            
+                            int ano = consultasNesseHorario.get(col - 1).getData().get(Calendar.YEAR);
+                            int mes = consultasNesseHorario.get(col - 1).getData().get(Calendar.MONTH) + 1;
+                            int dia = consultasNesseHorario.get(col - 1).getData().get(Calendar.DAY_OF_MONTH);
+                            
+                            String data = "";
+                            
+                            if(mes < 10) {
+                                data = ""+ dia +"/0"+ mes +"/"+ ano;
+                            } else {
+                                data = ""+ dia +"/"+ mes +"/"+ ano;
+                            }                 
+                            
+                            this.showModal(data, hora);
+                        });
+                        
+                        gridPaneAgenda.add(tableCell, (j + 1), (i + 1));
+                        
+                    }                                        
                 }
             }                
 
-    //        for(int i = 0; i < 6; i++) {
-    //            for(int j = 1; j < 5; j++) {
-    //                int idx = (6 * (j - 1)) + i;
-    //                
-    //                if(idx % 6 == 0 || idx == 0) {
-    //                    gridPaneAgenda.add(new Label(consultas.get(idx + 1).getHora()), i, j);
-    //                    
-    //                    for(int k = 0; k) {
-    //                    
-    //                    }
-    //                }
-    //            }
-    //        }
         }
     }
     
-    private HBox tableCellFactory() {
+    private HBox tableCellFactory(boolean hover) {
         HBox tableCell = new HBox();
 
-        //tableCell.getStyleClass().add("table-cell");
-        tableCell.getStyleClass().add("table-cell-nohover");
-        tableCell.setAlignment(Pos.CENTER);
+        if(hover) {
+            tableCell.getStyleClass().add("table-cell");
+        } else {
+            tableCell.getStyleClass().add("table-cell-nohover");
+        }
+                
+        tableCell.setAlignment(Pos.CENTER);               
 
         return tableCell;
-    }
+    }          
+    
+    private void showModal(String data, String hora) {
+        this.btnAgendarConsultaAction();
+        
+        this.labelData.setText(data);
+        this.labelHora.setText(hora);
+    }    
 }

@@ -26,7 +26,7 @@ public class ConsultaDAO {
             ps = conn.prepareStatement("INSERT INTO consulta VALUES(NULL,?,?,?,?)");                                   
             
             ps.setDate(1, new Date(novaConsulta.getData().getTime().getTime()));
-            ps.setTime(2, new Time(Long.parseLong(novaConsulta.getHora())));
+            ps.setTime(2, Time.valueOf(novaConsulta.getHora() + ":00"));
             ps.setInt(3, novaConsulta.getIdPaciente());
             ps.setInt(4, 0);
                                 
@@ -129,7 +129,7 @@ public class ConsultaDAO {
         
         try(Connection conn = ConnectionFactory.getConnection()) {
             
-            ps = conn.prepareStatement("SELECT * FROM consulta WHERE hora = ?");
+            ps = conn.prepareStatement("SELECT * FROM consulta WHERE hora = ? ORDER BY hora ASC, data ASC");
             ps.setString(1, hora + ":00");
             
             ResultSet rs = ps.executeQuery();

@@ -18,11 +18,11 @@ public class ProcedimentoDAO {
         
         try(Connection conn = ConnectionFactory.getConnection()) {
             
-            ps = conn.prepareStatement("INSERT INTO procedimento VALUES(NULL, ?, ?, ?");                                   
+            ps = conn.prepareStatement("INSERT INTO procedimento VALUES(NULL, ?, ?, ?)");                                   
             
-            ps.setString(1, procedimento.getResumo());
-            ps.setInt(2, procedimento.getIdProntuario());
-            ps.setInt(3, procedimento.getIdConsulta());           
+            ps.setString(1, procedimento.getResumo());            
+            ps.setInt(2, procedimento.getIdConsulta());           
+            ps.setInt(3, procedimento.getIdProntuario());
             
             System.out.println("Procedimento adicionado!");
             

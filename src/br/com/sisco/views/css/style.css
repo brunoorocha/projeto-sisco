@@ -212,6 +212,7 @@
 .table-agendamentos .table-cell:hover{
     -fx-background-color: #f5f5f5;
     -fx-background-insets: 5;
+    -fx-cursor: hand;
 }
 
 .table-agendamentos .table-cell .label, .table-agendamentos .table-cell-nohover .label{
@@ -389,6 +390,9 @@
     -fx-text-fill: #fff;
 }
 
+.procedimentos-table {
+    -fx-padding: 0 0 10 0;
+}
 
 .procedimentos-table .table-row {    
     -fx-padding: 5 20;

@@ -6,8 +6,10 @@
 package br.com.sisco.controllers;
 
 import br.com.sisco.dao.PacienteDAO;
+import br.com.sisco.dao.ProcedimentoDAO;
 import br.com.sisco.dao.ProntuarioDAO;
 import br.com.sisco.models.Paciente;
+import br.com.sisco.models.Procedimento;
 import br.com.sisco.models.Prontuario;
 import br.com.sisco.views.PacientesListCell;
 import java.net.URL;
@@ -27,6 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -41,6 +44,7 @@ public class PacientesController implements Initializable {
     
     @FXML private Button editarButton;
     @FXML private Button salvarButton;
+    @FXML private Button adicionarProcedimentoButton;
                 
     
     // Campos da área de Dados Pessoais             
@@ -64,7 +68,17 @@ public class PacientesController implements Initializable {
     @FXML private TextField textFieldAnestesia;
     @FXML private TextField textFieldHemorragia;
     
+    // Campos da área de procedimentos
+    @FXML private TextField textFieldDataConsulta;
+    @FXML private TextField textFieldResumo;
+    @FXML private Button buttonCancelar;
+    @FXML private Button buttonConcluir;
+    
+    @FXML private VBox modalAdicionarProcedimento;
+    
+    
     private int selectedIdPaciente = 0;
+    private int selectedIdProntuario = 0;
     
 
     private ObservableList<Paciente> pacientesList;
@@ -90,23 +104,27 @@ public class PacientesController implements Initializable {
                 Paciente p = (Paciente) newValue;
                 
                 Prontuario prontuario = ProntuarioDAO.listarProntuario(p.getIdPaciente());
-                selectedIdPaciente = p.getIdPaciente();
                 
-                preencherCampos(p.getNomeCompleto());        
                 if(prontuario != null) {
-                    textFieldQueixa.setText(prontuario.getQueixaPrincipal());
-                    textFieldDoenca.setText(prontuario.getDoencaGrave());
-                    textFieldReumatica.setText(prontuario.getFebreReumatica());
-                    textFieldTratamento.setText(prontuario.getTratamentoMedico());
-                    textFieldMedicacao.setText(prontuario.getMedicacao());
-                    textFieldGravida.setText(prontuario.getGravida());
-                    textFieldAlergico.setText(prontuario.getAlergico());
-                    textFieldHipertenso.setText(prontuario.getHipertenco());
-                    textFieldDiabetico.setText(prontuario.getDiabetico());
-                    textFieldGastricos.setText(prontuario.getProblemasGrastricos());
-                    textFieldAnestesia.setText(prontuario.getAnestesiaLocal());
-                    textFieldHemorragia.setText(prontuario.getHemorragia());
-                }   
+                    selectedIdPaciente = p.getIdPaciente();
+                    selectedIdProntuario = prontuario.getIdProntuario();                
+
+                    preencherCampos(p.getNomeCompleto());        
+                    if(prontuario != null) {
+                        textFieldQueixa.setText(prontuario.getQueixaPrincipal());
+                        textFieldDoenca.setText(prontuario.getDoencaGrave());
+                        textFieldReumatica.setText(prontuario.getFebreReumatica());
+                        textFieldTratamento.setText(prontuario.getTratamentoMedico());
+                        textFieldMedicacao.setText(prontuario.getMedicacao());
+                        textFieldGravida.setText(prontuario.getGravida());
+                        textFieldAlergico.setText(prontuario.getAlergico());
+                        textFieldHipertenso.setText(prontuario.getHipertenco());
+                        textFieldDiabetico.setText(prontuario.getDiabetico());
+                        textFieldGastricos.setText(prontuario.getProblemasGrastricos());
+                        textFieldAnestesia.setText(prontuario.getAnestesiaLocal());
+                        textFieldHemorragia.setText(prontuario.getHemorragia());
+                    }   
+                }
             }
         });
     }
@@ -120,8 +138,9 @@ public class PacientesController implements Initializable {
     private void buscarPaciente() {
         String nome = this.searchField.getText();
         
-        this.pacientesList.clear();        
+        this.pacientesList.clear();                
         this.pacientesList.setAll(new PacienteDAO().buscarPaciente(nome));
+        this.pacientesListView.getSelectionModel().select(0);
     }
     
     
@@ -208,4 +227,40 @@ public class PacientesController implements Initializable {
             datePickerDataNascimento.setValue(data);
         }                                      
     }
+    
+    
+    /*
+    
+        Action do botão de adicionar procedimento
+    
+    */
+    @FXML
+    private void adicionarProcedimentoButtonAction() {
+        modalAdicionarProcedimento.setVisible(true);
+    }
+    
+    
+    @FXML
+    private void buttonCancelarAction() {
+        textFieldDataConsulta.setText("");
+        textFieldResumo.setText("");
+        
+        modalAdicionarProcedimento.setVisible(false);
+    }
+    
+    
+    @FXML
+    private void buttonConcluirAction() {
+        
+        Procedimento procedimento = new Procedimento();
+        
+        procedimento.setIdConsulta(1);
+        procedimento.setIdProntuario(selectedIdProntuario);
+        procedimento.setResumo(textFieldResumo.getText());        
+        
+        ProcedimentoDAO.adicionarProcedimento(procedimento);
+        
+        this.buttonCancelarAction();
+    }
+    
 }

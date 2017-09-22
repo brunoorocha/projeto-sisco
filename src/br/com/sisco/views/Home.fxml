@@ -105,6 +105,9 @@
                                     </HBox.margin>
                                 </GridPane>
                             </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                         </HBox>
                         <GridPane fx:id="gridPaneAgenda" prefHeight="300.0" styleClass="table-agendamentos">
                             <columnConstraints>
@@ -308,7 +311,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Label styleClass="label-bold" text="22/07/2017">
+                                    <Label fx:id="labelData" styleClass="label-bold" text="22/07/2017">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
@@ -325,7 +328,7 @@
                               </HBox>
                               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
                                  <children>
-                                    <Label styleClass="label-bold" text="09:00" />
+                                    <Label fx:id="labelHora" styleClass="label-bold" text="09:00" />
                                  </children>
                               </HBox>
                            </children>

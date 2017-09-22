@@ -156,6 +156,8 @@ public class PacienteDAO {
             
             if(resultSet.next()){
                 paciente = new Paciente();
+                
+                paciente.setIdPaciente(resultSet.getInt("idPaciente"));                
                 paciente.setNomeCompleto(resultSet.getString("nomeCompleto"));                
                 
                 Calendar dataNascimento = Calendar.getInstance();
